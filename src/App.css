@@ -1,66 +1,438 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* ===========================
+   NovaForge Theme
+=========================== */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-body {
-  background: #111827;
-  color: white;
-  font-family: Arial, Helvetica, sans-serif;
+html,
+body,
+#root{
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  font-family:Inter,Segoe UI,sans-serif;
+  background:#0b1120;
+  color:white;
 }
 
-.app {
-  display: flex;
-  height: 100vh;
+button{
+  font:inherit;
 }
 
-.sidebar {
-  width: 80px;
-  background: #1f2937;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px 0;
-  gap: 20px;
+.app{
+  display:flex;
+  width:100%;
+  height:100%;
+  background:#0b1120;
 }
 
-.sidebar h2 {
-  color: #60a5fa;
+/* ===========================
+   Sidebar
+=========================== */
+
+.sidebar{
+  width:72px;
+  background:#111827;
+  border-right:1px solid #1f2937;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  padding:16px 10px;
+  gap:14px;
 }
 
-.sidebar button {
-  width: 50px;
-  height: 50px;
-  border: none;
-  background: #374151;
-  color: white;
-  border-radius: 12px;
-  font-size: 22px;
-  cursor: pointer;
+.logo{
+  font-size:26px;
+  font-weight:700;
+  color:#60a5fa;
+  margin-bottom:10px;
 }
 
-.sidebar button:hover {
-  background: #2563eb;
+.sidebar button{
+  width:48px;
+  height:48px;
+
+  border:none;
+  border-radius:14px;
+
+  background:#1e293b;
+  color:#94a3b8;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  cursor:pointer;
+  transition:.25s;
 }
 
-.workspace {
-  flex: 1;
-  padding: 40px;
+.sidebar button:hover{
+  background:#2563eb;
+  color:white;
+  transform:translateY(-2px);
 }
 
-.workspace h1 {
-  font-size: 42px;
+.sidebar .active{
+  background:#2563eb;
+  color:white;
 }
 
-.workspace p {
-  color: #9ca3af;
-  margin-top: 10px;
+/* ===========================
+   Workspace
+=========================== */
+
+.workspace{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
 }
 
-.welcome-card {
-  margin-top: 40px;
-  background: #1f2937;
-  padding: 30px;
-  border-radius: 16px;
+/* ===========================
+   TitleBar
+=========================== */
+
+.titlebar{
+  height:58px;
+
+  background:#111827;
+
+  border-bottom:1px solid #1f2937;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 18px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.brandLogo{
+  width:34px;
+  height:34px;
+
+  border-radius:10px;
+
+  background:linear-gradient(135deg,#2563eb,#7c3aed);
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  font-weight:700;
+}
+
+.searchBox{
+  width:360px;
+
+  display:flex;
+  align-items:center;
+
+  gap:10px;
+
+  background:#1e293b;
+
+  padding:9px 14px;
+
+  border-radius:12px;
+}
+
+.searchBox input{
+  width:100%;
+
+  background:transparent;
+  border:none;
+  outline:none;
+
+  color:white;
+}
+/* ===========================
+   Content Layout
+=========================== */
+
+.content{
+  flex:1;
+  display:flex;
+  overflow:hidden;
+}
+
+/* ===========================
+   Explorer
+=========================== */
+
+.explorer{
+  width:260px;
+  background:#0f172a;
+  border-right:1px solid #1f2937;
+  padding:18px;
+  overflow:auto;
+}
+
+.explorer h4{
+  color:#94a3b8;
+  font-size:12px;
+  letter-spacing:1px;
+  margin-bottom:18px;
+}
+
+.tree{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.treeItem,
+.treeChild{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:8px 10px;
+  border-radius:8px;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.treeItem:hover,
+.treeChild:hover{
+  background:#1e293b;
+}
+
+.treeChild{
+  padding-left:30px;
+}
+
+/* ===========================
+   Editor
+=========================== */
+
+.editor{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  background:#0b1120;
+  overflow:hidden;
+}
+
+.tabs{
+  height:46px;
+  display:flex;
+  align-items:center;
+  background:#111827;
+  border-bottom:1px solid #1f2937;
+}
+
+.tab{
+  padding:0 22px;
+  height:100%;
+  display:flex;
+  align-items:center;
+  color:#94a3b8;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.tab:hover{
+  background:#1e293b;
+}
+
+.activeTab{
+  color:white;
+  background:#1e293b;
+  border-top:2px solid #3b82f6;
+}
+
+.editorContent{
+  flex:1;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+}
+
+.editorContent h1{
+  font-size:52px;
+  margin-bottom:16px;
+}
+
+.editorContent p{
+  color:#94a3b8;
+  font-size:20px;
+}
+
+/* ===========================
+   Status Bar
+=========================== */
+
+.statusbar{
+  height:30px;
+  background:#2563eb;
+  display:flex;
+  align-items:center;
+  gap:24px;
+  padding:0 16px;
+  font-size:13px;
+}
+
+/* ===========================
+   Scrollbar
+=========================== */
+
+::-webkit-scrollbar{
+  width:8px;
+}
+
+::-webkit-scrollbar-thumb{
+  background:#334155;
+  border-radius:8px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background:#475569;
+}
+/* ===========================
+   Premium Effects
+=========================== */
+
+/* Logo Glow */
+
+.logo,
+.brandLogo{
+  box-shadow:0 0 20px rgba(59,130,246,.35);
+}
+
+/* Glass Effect */
+
+.sidebar,
+.titlebar,
+.explorer{
+  backdrop-filter:blur(18px);
+}
+
+/* Card Hover */
+
+.treeItem,
+.treeChild,
+.tab,
+.sidebar button{
+  transition:
+    background .25s ease,
+    transform .25s ease,
+    color .25s ease;
+}
+
+.sidebar button:hover{
+  transform:translateY(-2px) scale(1.05);
+}
+
+.tab:hover{
+  color:white;
+}
+
+/* Search */
+
+.searchBox{
+  border:1px solid transparent;
+  transition:.25s;
+}
+
+.searchBox:hover{
+  border-color:#2563eb;
+}
+
+.searchBox:focus-within{
+  border-color:#3b82f6;
+  box-shadow:0 0 0 3px rgba(59,130,246,.18);
+}
+
+/* Welcome */
+
+.editorContent h1{
+  background:linear-gradient(
+      90deg,
+      #60a5fa,
+      #7c3aed,
+      #38bdf8
+  );
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.editorContent p{
+  max-width:620px;
+  text-align:center;
+  line-height:1.7;
+}
+
+/* Status */
+
+.statusbar span{
+  cursor:default;
+}
+
+/* Smooth */
+
+button,
+input,
+.tab,
+.treeItem,
+.treeChild{
+  transition:all .25s ease;
+}
+
+/* Selection */
+
+::selection{
+  background:#2563eb;
+  color:white;
+}
+
+/* Animation */
+
+@keyframes fadeUp{
+
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+}
+
+.editorContent{
+  animation:fadeUp .6s ease;
+}
+
+/* Premium Background */
+
+body{
+
+background:
+radial-gradient(circle at top right,#1d4ed822,transparent 35%),
+radial-gradient(circle at bottom left,#7c3aed22,transparent 30%),
+#0b1120;
+
+}
+.editorArea{
+    flex:1;
+    overflow:hidden;
+}
+
+.monaco-editor{
+    padding-top:10px;
 }

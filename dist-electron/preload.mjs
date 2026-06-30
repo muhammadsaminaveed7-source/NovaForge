@@ -23,5 +23,6 @@ electron.contextBridge.exposeInMainWorld("ipcRenderer", {
 });
 electron.contextBridge.exposeInMainWorld("electronAPI", {
   openFolder: () => electron.ipcRenderer.invoke("open-folder"),
-  readFile: (filePath) => electron.ipcRenderer.invoke("read-file", filePath)
+  readFile: (filePath) => electron.ipcRenderer.invoke("read-file", filePath),
+  saveFile: (filePath, content) => electron.ipcRenderer.invoke("save-file", filePath, content)
 });

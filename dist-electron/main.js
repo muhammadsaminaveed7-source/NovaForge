@@ -37,26 +37,10 @@ function createWindow() {
 app.whenReady().then(() => {
   createWindow();
   ipcMain.handle("open-folder", async () => {
-    ipcMain.handle("read-file", async (_, filePath) => {
-      try {
-        const content = fs.readFileSync(filePath, "utf-8");
-        return {
-          success: true,
-          content
-        };
-      } catch {
-        return {
-          success: false,
-          content: ""
-        };
-      }
-    });
     const result = await dialog.showOpenDialog({
       properties: ["openDirectory"]
     });
-    if (result.canceled) {
-      return null;
-    }
+    if (result.canceled) return null;
     const folderPath = result.filePaths[0];
     const files = fs.readdirSync(folderPath);
     return {
@@ -64,6 +48,31 @@ app.whenReady().then(() => {
       files
     };
   });
+  ipcMain.handle("read-file", async (_, filePath) => {
+    try {
+      const content = fs.readFileSync(filePath, "utf-8");
+      return {
+        success: true,
+        content
+      };
+    } catch {
+      return {
+        success: false,
+        content: ""
+      };
+    }
+  });
+  ipcMain.handle(
+    "save-file",
+    async (_, filePath, content) => {
+      try {
+        fs.writeFileSync(filePath, content, "utf-8");
+        return true;
+      } catch {
+        return false;
+      }
+    }
+  );
   app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) {
       createWindow();

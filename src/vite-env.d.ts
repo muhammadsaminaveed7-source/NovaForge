@@ -1,3 +1,5 @@
+/// <reference types="vite/client" />
+
 interface Window {
   electronAPI: {
     openFolder: () => Promise<{
@@ -10,10 +12,11 @@ interface Window {
     ) => Promise<{
       success: boolean;
       content: string;
-      saveFile: (
-  filePath: string,
-  content: string
-) => Promise<boolean>;
     }>;
+
+    saveFile: (
+      filePath: string,
+      content: string
+    ) => Promise<boolean>;
   };
 }

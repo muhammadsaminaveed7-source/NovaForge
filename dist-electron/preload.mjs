@@ -3,20 +3,25 @@ const electron = require("electron");
 electron.contextBridge.exposeInMainWorld("ipcRenderer", {
   on(...args) {
     const [channel, listener] = args;
-    return electron.ipcRenderer.on(channel, (event, ...args2) => listener(event, ...args2));
+    return electron.ipcRenderer.on(
+      channel,
+      (event, ...args2) => listener(event, ...args2)
+    );
   },
   off(...args) {
-    const [channel, ...omit] = args;
-    return electron.ipcRenderer.off(channel, ...omit);
+    const [channel, ...rest] = args;
+    return electron.ipcRenderer.off(channel, ...rest);
   },
   send(...args) {
-    const [channel, ...omit] = args;
-    return electron.ipcRenderer.send(channel, ...omit);
+    const [channel, ...rest] = args;
+    return electron.ipcRenderer.send(channel, ...rest);
   },
   invoke(...args) {
-    const [channel, ...omit] = args;
-    return electron.ipcRenderer.invoke(channel, ...omit);
+    const [channel, ...rest] = args;
+    return electron.ipcRenderer.invoke(channel, ...rest);
   }
-  // You can expose other APTs you need here.
-  // ...
+});
+electron.contextBridge.exposeInMainWorld("electronAPI", {
+  openFolder: () => electron.ipcRenderer.invoke("open-folder"),
+  readFile: (filePath) => electron.ipcRenderer.invoke("read-file", filePath)
 });

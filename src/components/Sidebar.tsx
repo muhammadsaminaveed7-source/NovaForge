@@ -10,9 +10,14 @@ export default function Sidebar() {
           <Home size={22} />
         </button>
 
-        <button>
-          <FolderOpen size={22} />
-        </button>
+        <button
+  onClick={async () => {
+    const folder = await window.electronAPI.openFolder();
+    console.log(folder);
+  }}
+>
+  <FolderOpen size={22} />
+</button>
 
         <button>
           <Search size={22} />

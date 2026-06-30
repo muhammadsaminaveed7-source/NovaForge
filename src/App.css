@@ -436,3 +436,53 @@ radial-gradient(circle at bottom left,#7c3aed22,transparent 30%),
 .monaco-editor{
     padding-top:10px;
 }
+.leftSection{
+    display:flex;
+    align-items:center;
+    gap:30px;
+}
+
+.menuBar{
+    display:flex;
+    gap:4px;
+}
+
+.menuBar button{
+    background:none;
+    border:none;
+    color:#cbd5e1;
+    padding:8px 14px;
+    border-radius:8px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.menuBar button:hover{
+    background:#1e293b;
+    color:white;
+}
+
+.windowButtons{
+    display:flex;
+    gap:6px;
+}
+
+.windowButtons button{
+    width:34px;
+    height:34px;
+    border:none;
+    background:transparent;
+    color:#cbd5e1;
+    border-radius:8px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.windowButtons button:hover{
+    background:#1e293b;
+}
+
+.windowButtons .close:hover{
+    background:#ef4444;
+    color:white;
+}

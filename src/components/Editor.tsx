@@ -1,26 +1,24 @@
 import MonacoEditor from "@monaco-editor/react";
+import { useEditorStore } from "../store/editorStore";
 
 export default function Editor() {
+  const currentFile = useEditorStore((state) => state.currentFile);
+  const content = useEditorStore((state) => state.content);
+
   return (
     <main className="editor">
-
       <div className="tabs">
-        <div className="tab activeTab">App.tsx</div>
-        <div className="tab">Sidebar.tsx</div>
-        <div className="tab">App.css</div>
+        <div className="tab activeTab">
+          {currentFile || "No File Open"}
+        </div>
       </div>
 
       <div className="editorArea">
         <MonacoEditor
           height="100%"
-          defaultLanguage="typescript"
+          language="typescript"
           theme="vs-dark"
-          defaultValue={`function hello() {
-  console.log("Welcome to NovaForge 🚀");
-}
-
-hello();
-`}
+          value={content}
           options={{
             minimap: {
               enabled: true,
@@ -33,7 +31,6 @@ hello();
           }}
         />
       </div>
-
     </main>
   );
 }
